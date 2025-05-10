@@ -1,0 +1,54 @@
+Based on the file structure you provided, let's count the total number of files:
+
+1. `public/favicon.ico`
+2. `src/app/page.tsx`
+3. `src/app/login/page.tsx`
+4. `src/app/dashboard/page.tsx`
+5. `src/app/org/[id]/page.tsx`
+6. `src/components/auth/LoginForm.tsx`
+7. `src/components/auth/SignupForm.tsx`
+8. `src/components/auth/WalletConnect.tsx`
+9. `src/components/dashboard/DashboardLayout.tsx`
+10. `src/components/dashboard/StatsCard.tsx`
+11. `src/components/dashboard/RecentActivity.tsx`
+12. `src/components/organization/OrgCard.tsx`
+13. `src/components/organization/OrgForm.tsx`
+14. `src/components/organization/OrgList.tsx`
+15. `src/components/server/ServerCard.tsx`
+16. `src/components/server/ServerForm.tsx`
+17. `src/components/server/ServerList.tsx`
+18. `src/components/attendance/AttendanceScanner.tsx`
+19. `src/components/attendance/AttendanceTable.tsx`
+20. `src/components/attendance/QRCode.tsx`
+21. `src/components/credential/CredentialCard.tsx`
+22. `src/components/credential/CredentialGallery.tsx`
+23. `src/components/credential/NFTViewer.tsx`
+24. `src/components/ui/Button.tsx`
+25. `src/components/ui/Card.tsx`
+26. `src/components/ui/Input.tsx`
+27. `src/components/ui/Modal.tsx`
+28. `src/config/env.ts`
+29. `src/context/authContext.tsx`
+30. `src/hooks/useAuth.ts`
+31. `src/hooks/useOrganization.ts`
+32. `src/hooks/useAttendance.ts`
+33. `src/lib/formatDate.ts`
+34. `src/lib/web3.ts`
+35. `src/lib/api.ts`
+36. `src/services/authApi.ts`
+37. `src/services/organizationApi.ts`
+38. `src/services/attendanceApi.ts`
+39. `src/store/useUserStore.ts`
+40. `src/store/useAppStore.ts`
+41. `src/types/index.ts`
+42. `src/types/auth.ts`
+43. `src/types/organization.ts`
+44. `src/types/attendance.ts`
+45. `src/styles/globals.css`
+46. `tailwind.config.js`
+47. `next.config.js`
+48. `.env.example`
+49. `tsconfig.json`
+50. `package.json`
+
+In total, there are 50 files in the provided file structure.

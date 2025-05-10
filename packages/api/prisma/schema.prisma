@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  MEMBER
+}
+
+model User {
+  id                String             @id @default(uuid())
+  email             String             @unique
+  password          String?            // Add password field
+  name              String?
+  walletAddress     String?            @unique // Make wallet address optional
+  nonce             String             @default(uuid())
+  profilePicture    String?
+  userOrganizations UserOrganization[]
+  credentials       Credential[]
+  attendanceRecords Attendance[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+}
+
+model Organization {
+  id                String             @id @default(uuid())
+  name              String
+  description       String?
+  logoUrl           String?
+  walletAddress     String             @unique
+  contractAddress   String?
+  userOrganizations UserOrganization[]
+  servers           Server[]
+  credentials       Credential[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+}
+
+model UserOrganization {
+  id             String       @id @default(uuid())
+  user           User         @relation(fields: [userId], references: [id])
+  userId         String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  role           Role
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([userId, organizationId])
+}
+
+model Server {
+  id             String       @id @default(uuid())
+  name           String
+  description    String?
+  location       String?
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  attendance     Attendance[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}
+
+model Attendance {
+  id         String    @id @default(uuid())
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String
+  server     Server    @relation(fields: [serverId], references: [id])
+  serverId   String
+  checkIn    DateTime  @default(now())
+  checkOut   DateTime?
+  duration   Int?
+  proofHash  String?   @unique
+  txHash     String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Credential {
+  id             String       @id @default(uuid())
+  user           User         @relation(fields: [userId], references: [id])
+  userId         String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  organizationId String
+  type           String
+  data           Json
+  issueDate      DateTime     @default(now())
+  expiresAt      DateTime?
+  revoked        Boolean      @default(false)
+  tokenId        String?
+  txHash         String?
+  proofHash      String?      @unique
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+}

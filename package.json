@@ -1,0 +1,18 @@
+{
+  "name": "d-attend",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "contracts"
+  ],
+  "scripts": {
+    "setup": "yarn install && npx lerna bootstrap && npx lerna run build --stream && cd packages/api && npx prisma generate && npx prisma migrate dev && cd ../.. && cd contracts && yarn build && cd ..",
+    "build": "npx lerna run build --stream",
+    "dev": "npx lerna run dev --parallel",
+    "test": "npx lerna run test --stream"
+  },
+  "devDependencies": {
+    "lerna": "^6.0.0"
+  }
+}
